@@ -1,8 +1,9 @@
 package kata.base
 
-enum class Score {
+enum class Category {
     CHANCE,
     YAHTZEE,
     ACES,
-    TWOS
+    TWOS,
+    THREES
 }

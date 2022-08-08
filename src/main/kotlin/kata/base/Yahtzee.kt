@@ -3,26 +3,35 @@
  */
 package kata.base
 
-import kata.base.Score.*
+import kata.base.Category.*
 
 class Yahtzee {
     companion object {
-        fun score(score: Score, dice1: Int, dice2: Int, dice3: Int, dice4: Int, dice5: Int): Int {
+        fun score(
+            category: Category,
+            dice1: Int,
+            dice2: Int,
+            dice3: Int,
+            dice4: Int,
+            dice5: Int
+        ): Int {
             val dices = listOf(dice1, dice2, dice3, dice4, dice5)
 
-            val result = when (score) {
+            val result = when (category) {
                 CHANCE -> ::chance
                 YAHTZEE -> ::yahtzee
                 ACES -> ::aces
                 TWOS -> ::twos
+                THREES -> ::threes
             }
 
             return result(dices)
         }
 
-        private fun aces(dices: List<Int>) = dices.filter { it == 1 }.sum()
-
-        private fun twos(dices: List<Int>) = dices.filter { it == 2 }.sum()
+        private fun aces(dices: List<Int>) = numerics(dices, 1)
+        private fun twos(dices: List<Int>) = numerics(dices, 2)
+        private fun threes(dices: List<Int>) = numerics(dices, 3)
+        private fun numerics(dices: List<Int>, score: Int) = dices.filter { it == score }.sum()
 
         private fun yahtzee(dices: List<Int>) =
             if (dices.toSet().size == 1) 50
