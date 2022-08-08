@@ -1,7 +1,6 @@
 package kata.base
 
 import io.kotest.core.spec.style.WordSpec
-import io.kotest.matchers.sequences.contain
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
@@ -15,7 +14,7 @@ class CanaryTest : WordSpec({
         }
 
         "mock" {
-            val mock = mockk<App>()
+            val mock = mockk<Yahtzee>()
             every { mock.hello() } returns "Goodbye, World!"
 
             mock.hello() shouldContain "Goodbye"

@@ -3,9 +3,9 @@
  */
 package kata.base
 
-class App {
-    fun hello() = "Hello, World!"
+class Yahtzee {
+    fun hello() = "Yahtzee!"
 }
 
 
-fun main() = print(App().hello())
+fun main() = print(Yahtzee().hello())

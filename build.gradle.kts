@@ -37,5 +37,5 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application.
-    mainClass.set("kata.base.AppKt")
+    mainClass.set("kata.base.YahtzeeKt")
 }
