@@ -8,7 +8,10 @@ class Yahtzee {
         fun score(score: Score, dice1: Int, dice2: Int, dice3: Int, dice4: Int, dice5: Int) =
             if (score == Score.CHANCE)
                 dice1 + dice2 + dice3 + dice4 + dice5
-            else 0
+            else {
+                if (setOf(dice1, dice2, dice3, dice4, dice5).size == 1) 50
+                else 0
+            }
     }
 }
 

@@ -21,6 +21,12 @@ class YahtzeeTest : WordSpec({
 
                 result shouldBe 0
             }
+
+            "return 50 given dices with the same scores" {
+                val result = Yahtzee.score(YAHTZEE, 1, 1, 1, 1, 1)
+
+                result shouldBe 50
+            }
         }
     }
 })
