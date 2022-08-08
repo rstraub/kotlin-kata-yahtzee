@@ -119,6 +119,12 @@ class YahtzeeTest : WordSpec({
 
                 result shouldBe 2 + 2 + 2
             }
+
+            "return the sum of just three similar dices given more" {
+                val result = score(THREE_OF_A_KIND, 2, 2, 3, 2, 2)
+
+                result shouldBe 2 + 2 + 2
+            }
         }
     }
 })

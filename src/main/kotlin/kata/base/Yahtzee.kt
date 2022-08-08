@@ -53,7 +53,9 @@ class Yahtzee {
                 dices.count { it == u } >= 3
             } ?: 0
 
-            return numerics(dices, numberWithThreeDices)
+            val scoringDices = dices.filter { it == numberWithThreeDices }.take(3)
+
+            return scoringDices.sum()
         }
     }
 }
