@@ -14,10 +14,13 @@ class Yahtzee {
                 CHANCE -> chance(dices)
                 YAHTZEE -> yahtzee(dices)
                 ACES -> aces(dices)
+                TWOS -> twos(dices)
             }
         }
 
         private fun aces(dices: List<Int>) = dices.filter { it == 1 }.sum()
+
+        private fun twos(dices: List<Int>) = dices.filter { it == 2 }.sum()
 
         private fun yahtzee(dices: List<Int>) =
             if (dices.toSet().size == 1) 50

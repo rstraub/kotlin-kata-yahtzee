@@ -37,7 +37,20 @@ class YahtzeeTest : WordSpec({
             "return total score of ones" {
                 val result = Yahtzee.score(ACES, 1, 3, 1, 5, 6)
 
-                result shouldBe 2
+                result shouldBe 1 + 1
+            }
+        }
+
+        "twos" should {
+            "return 0 given no twos" {
+                val result = Yahtzee.score(TWOS, 1, 3, 4, 5, 6)
+
+                result shouldBe 0
+            }
+            "return total score of ones" {
+                val result = Yahtzee.score(TWOS, 2, 3, 2, 5, 6)
+
+                result shouldBe 2 + 2
             }
         }
     }

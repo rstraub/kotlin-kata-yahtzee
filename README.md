@@ -9,7 +9,7 @@
 - ~~Yahtzee~~
 - Numerics
   - ~~aces~~
-  - twos
+  - ~~twos~~
   - threes
   - fours
   - fives
