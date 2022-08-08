@@ -60,10 +60,49 @@ class YahtzeeTest : WordSpec({
 
                 result shouldBe 0
             }
-            "return total score of ones" {
+            "return total score of threes" {
                 val result = Yahtzee.score(THREES, 3, 1, 3, 5, 6)
 
                 result shouldBe 3 + 3
+            }
+        }
+
+        "fours" should {
+            "return 0 given no fours" {
+                val result = Yahtzee.score(FOURS, 1, 2, 3, 5, 6)
+
+                result shouldBe 0
+            }
+            "return total score of fours" {
+                val result = Yahtzee.score(FOURS, 4, 1, 4, 5, 6)
+
+                result shouldBe 4 + 4
+            }
+        }
+
+        "fives" should {
+            "return 0 given no fives" {
+                val result = Yahtzee.score(FIVES, 1, 2, 3, 4, 6)
+
+                result shouldBe 0
+            }
+            "return total score of fives" {
+                val result = Yahtzee.score(FIVES, 5, 1, 5, 4, 6)
+
+                result shouldBe 5 + 5
+            }
+        }
+
+        "sixes" should {
+            "return 0 given no sixes" {
+                val result = Yahtzee.score(SIXES, 1, 2, 3, 4, 5)
+
+                result shouldBe 0
+            }
+            "return total score of sixes" {
+                val result = Yahtzee.score(SIXES, 6, 1, 6, 4, 5)
+
+                result shouldBe 6 + 6
             }
         }
     }

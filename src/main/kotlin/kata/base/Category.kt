@@ -5,5 +5,8 @@ enum class Category {
     YAHTZEE,
     ACES,
     TWOS,
-    THREES
+    THREES,
+    FOURS,
+    FIVES,
+    SIXES
 }

@@ -23,6 +23,9 @@ class Yahtzee {
                 ACES -> ::aces
                 TWOS -> ::twos
                 THREES -> ::threes
+                FOURS -> ::fours
+                FIVES -> ::fives
+                SIXES -> ::sixes
             }
 
             return result(dices)
@@ -31,6 +34,9 @@ class Yahtzee {
         private fun aces(dices: List<Int>) = numerics(dices, 1)
         private fun twos(dices: List<Int>) = numerics(dices, 2)
         private fun threes(dices: List<Int>) = numerics(dices, 3)
+        private fun fours(dices: List<Int>) = numerics(dices, 4)
+        private fun fives(dices: List<Int>) = numerics(dices, 5)
+        private fun sixes(dices: List<Int>) = numerics(dices, 6)
         private fun numerics(dices: List<Int>, score: Int) = dices.filter { it == score }.sum()
 
         private fun yahtzee(dices: List<Int>) =

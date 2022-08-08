@@ -7,13 +7,13 @@
 
 - ~~Chance~~
 - ~~Yahtzee~~
-- Numerics
+- ~~Numerics~~
   - ~~aces~~
   - ~~twos~~
-  - threes
-  - fours
-  - fives
-  - sixes
+  - ~~threes~~
+  - ~~fours~~
+  - ~~fives~~
+  - ~~sixes~~
 - Straights
   - small
   - large
