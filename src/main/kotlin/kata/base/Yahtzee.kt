@@ -10,12 +10,14 @@ class Yahtzee {
         fun score(score: Score, dice1: Int, dice2: Int, dice3: Int, dice4: Int, dice5: Int): Int {
             val dices = listOf(dice1, dice2, dice3, dice4, dice5)
 
-            return when (score) {
-                CHANCE -> chance(dices)
-                YAHTZEE -> yahtzee(dices)
-                ACES -> aces(dices)
-                TWOS -> twos(dices)
+            val result = when (score) {
+                CHANCE -> ::chance
+                YAHTZEE -> ::yahtzee
+                ACES -> ::aces
+                TWOS -> ::twos
             }
+
+            return result(dices)
         }
 
         private fun aces(dices: List<Int>) = dices.filter { it == 1 }.sum()
