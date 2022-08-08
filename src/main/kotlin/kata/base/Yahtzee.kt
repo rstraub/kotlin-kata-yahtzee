@@ -46,7 +46,15 @@ class Yahtzee {
 
         private fun chance(dices: List<Int>) = dices.sum()
 
-        private fun threeOfAKind(dices: List<Int>) = 0
+        private fun threeOfAKind(dices: List<Int>): Int {
+            val unique = dices.distinct()
+
+            val numberWithThreeDices = unique.firstOrNull { u ->
+                dices.count { it == u } >= 3
+            } ?: 0
+
+            return numerics(dices, numberWithThreeDices)
+        }
     }
 }
 
