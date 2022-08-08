@@ -6,7 +6,7 @@
 ## Todo List
 
 - ~~Chance~~
-- Yahtzee
+- ~~Yahtzee~~
 - Try to break it
   - Negative dices
   - Dices larger than six
