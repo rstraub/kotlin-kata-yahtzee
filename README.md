@@ -17,9 +17,10 @@
 - Straights
   - small
   - large
-- Three of a kind
-- Four of a kind
-- Full house
+- Kinds
+  - Three of a kind
+  - Four of a kind
+  - Full house
 - Try to break it
   - Negative dices
   - Dices larger than six

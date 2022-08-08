@@ -26,6 +26,7 @@ class Yahtzee {
                 FOURS -> ::fours
                 FIVES -> ::fives
                 SIXES -> ::sixes
+                THREE_OF_A_KIND -> ::threeOfAKind
             }
 
             return result(dices)
@@ -44,6 +45,8 @@ class Yahtzee {
             else 0
 
         private fun chance(dices: List<Int>) = dices.sum()
+
+        private fun threeOfAKind(dices: List<Int>) = 0
     }
 }
 

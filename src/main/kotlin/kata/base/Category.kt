@@ -8,5 +8,6 @@ enum class Category {
     THREES,
     FOURS,
     FIVES,
-    SIXES
+    SIXES,
+    THREE_OF_A_KIND
 }
