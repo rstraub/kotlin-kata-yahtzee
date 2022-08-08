@@ -2,8 +2,7 @@ package kata.base
 
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
-import kata.base.Score.CHANCE
-import kata.base.Score.YAHTZEE
+import kata.base.Score.*
 
 class YahtzeeTest : WordSpec({
     "score category" When {
@@ -26,6 +25,19 @@ class YahtzeeTest : WordSpec({
                 val result = Yahtzee.score(YAHTZEE, 1, 1, 1, 1, 1)
 
                 result shouldBe 50
+            }
+        }
+
+        "aces" should {
+            "return 0 given no ones" {
+                val result = Yahtzee.score(ACES, 2, 3, 4, 5, 6)
+
+                result shouldBe 0
+            }
+            "return total score of ones" {
+                val result = Yahtzee.score(ACES, 1, 3, 1, 5, 6)
+
+                result shouldBe 2
             }
         }
     }

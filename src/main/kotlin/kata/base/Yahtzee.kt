@@ -3,16 +3,21 @@
  */
 package kata.base
 
-import kata.base.Score.CHANCE
+import kata.base.Score.*
 
 class Yahtzee {
     companion object {
         fun score(score: Score, dice1: Int, dice2: Int, dice3: Int, dice4: Int, dice5: Int): Int {
             val dices = listOf(dice1, dice2, dice3, dice4, dice5)
 
-            return if (score == CHANCE) chance(dices)
-            else yahtzee(dices)
+            return when (score) {
+                CHANCE -> chance(dices)
+                YAHTZEE -> yahtzee(dices)
+                ACES -> aces(dices)
+            }
         }
+
+        private fun aces(dices: List<Int>) = dices.filter { it == 1 }.sum()
 
         private fun yahtzee(dices: List<Int>) =
             if (dices.toSet().size == 1) 50
