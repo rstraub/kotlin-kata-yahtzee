@@ -4,8 +4,11 @@
 package kata.base
 
 class Yahtzee {
-    fun hello() = "Yahtzee!"
+    companion object {
+        fun score(dice1: Int, dice2: Int, dice3: Int, dice4: Int, dice5: Int) =
+            dice1 + dice2 + dice3 + dice4 + dice5
+    }
 }
 
 
-fun main() = print(Yahtzee().hello())
+fun main() = print("Hello, Yahtzee!")
