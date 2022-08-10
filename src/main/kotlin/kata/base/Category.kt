@@ -10,42 +10,43 @@ enum class Category {
             else 0
     },
     ACES {
-        override fun calculateScore(dices: List<Int>) = numerics(dices, 1)
+        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(1)
     },
     TWOS {
-        override fun calculateScore(dices: List<Int>) = numerics(dices, 2)
+        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(2)
     },
     THREES {
-        override fun calculateScore(dices: List<Int>) = numerics(dices, 3)
+        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(3)
     },
     FOURS {
-        override fun calculateScore(dices: List<Int>) = numerics(dices, 4)
+        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(4)
     },
     FIVES {
-        override fun calculateScore(dices: List<Int>) = numerics(dices, 5)
+        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(5)
     },
     SIXES {
-        override fun calculateScore(dices: List<Int>) = numerics(dices, 6)
+        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(6)
     },
     THREE_OF_A_KIND {
-        override fun calculateScore(dices: List<Int>) = nOfAKind(3, dices)
+        override fun calculateScore(dices: List<Int>) = dices.nOfAKind(3)
     },
     FOUR_OF_A_KIND {
-        override fun calculateScore(dices: List<Int>) = nOfAKind(4, dices)
+        override fun calculateScore(dices: List<Int>) = dices.nOfAKind(4)
     },
     FULL_HOUSE {
         override fun calculateScore(dices: List<Int>): Int {
-            val unique = dices.distinct()
-            if (unique.size != 2) return 0
+            return if (dices.isFullHouse()) 25
+            else 0
+        }
+
+        private fun List<Int>.isFullHouse(): Boolean {
+            val unique = distinct()
+            if (unique.size != 2) return false
 
             val firstDice = unique.first()
-            val countOfFirstDices = dices.count { it == firstDice }
+            val secondDice = unique.last()
 
-            val secondDice = unique[1]
-            val countOfSecondDices = dices.count { it == secondDice }
-
-            return if (countOfFirstDices > 3 || countOfSecondDices > 3) 0
-            else 25
+            return countDices(firstDice) <= 3 && countDices(secondDice) <= 3
         }
     },
     SMALL_STRAIGHT {
@@ -54,9 +55,15 @@ enum class Category {
         private val option3 = listOf(3, 4, 5, 6)
 
         override fun calculateScore(dices: List<Int>): Int {
-            if (dices.subList(0, dices.size - 1) == option1) return 30
-            return 0
+            val firstFour = dices.subList(0, dices.size - 1)
+            val lastFour = dices.subList(1, dices.size)
+
+            return if (firstFour.isSmallStraight() || lastFour.isSmallStraight()) 30
+            else 0
         }
+
+        private fun List<Int>.isSmallStraight() =
+            this == option1 || this == option2 || this == option3
     },
     LARGE_STRAIGHT {
         private val option1 = listOf(1, 2, 3, 4, 5)
@@ -71,16 +78,17 @@ enum class Category {
     internal abstract fun calculateScore(dices: List<Int>): Int
 
     private companion object {
-        private fun numerics(dices: List<Int>, score: Int) = dices.filter { it == score }.sum()
+        private fun List<Int>.countDices(number: Int) = count { it == number }
+        private fun List<Int>.sumAllOfNumber(number: Int) = countDices(number) * number
 
-        fun nOfAKind(requiredSimilarDices: Int, dices: List<Int>): Int {
-            val unique = dices.distinct()
+        fun List<Int>.nOfAKind(numberOfSimilarDices: Int): Int {
+            val unique = distinct()
 
             val numberWithNOfAKind = unique.firstOrNull { u ->
-                dices.count { it == u } >= requiredSimilarDices
+                countDices(u) >= numberOfSimilarDices
             } ?: 0
 
-            val scoringDices = dices.filter { it == numberWithNOfAKind }.take(requiredSimilarDices)
+            val scoringDices = filter { it == numberWithNOfAKind }.take(numberOfSimilarDices)
 
             return scoringDices.sum()
         }

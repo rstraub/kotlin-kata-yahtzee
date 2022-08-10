@@ -166,7 +166,7 @@ class YahtzeeTest : WordSpec({
                 result shouldBe 0
             }
         }
-        // only valid options are 1-2-3-4, 2-3-4-5, or 3-4-5-6
+        
         "small straight" should {
             "return 30 given 1, 2, 3, 4 sequentially" {
                 val result = score(SMALL_STRAIGHT, 1, 2, 3, 4, 5)
@@ -177,17 +177,17 @@ class YahtzeeTest : WordSpec({
             "return 30 given 2, 3, 4, 5 sequentially" {
                 val result = score(SMALL_STRAIGHT, 1, 3, 4, 5, 6)
 
-//                result shouldBe 30
+                result shouldBe 30
             }
 
             "return 30 given 3, 4, 5, 6 sequentially" {
                 val result = score(SMALL_STRAIGHT, 1, 3, 4, 5, 6)
 
-//                result shouldBe 30
+                result shouldBe 30
             }
 
             "return 0 given non sequential straight" {
-                val result = score(SMALL_STRAIGHT, 2, 3, 4, 5, 6)
+                val result = score(SMALL_STRAIGHT, 3, 2, 4, 5, 6)
 
                 result shouldBe 0
             }
