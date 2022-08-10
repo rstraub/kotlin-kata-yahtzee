@@ -47,30 +47,17 @@ class Yahtzee {
 
         private fun chance(dices: List<Int>) = dices.sum()
 
-        private fun threeOfAKind(dices: List<Int>): Int {
-            val requiredSimilarDices = 3
+        private fun threeOfAKind(dices: List<Int>) = nOfAKind(3, dices)
+        private fun fourOfAKind(dices: List<Int>) = nOfAKind(4, dices)
+
+        private fun nOfAKind(requiredSimilarDices: Int, dices: List<Int>): Int {
             val unique = dices.distinct()
 
-            val numberWithThreeDices = unique.firstOrNull { u ->
+            val numberWithNOfAKind = unique.firstOrNull { u ->
                 dices.count { it == u } >= requiredSimilarDices
             } ?: 0
 
-            val scoringDices =
-                dices.filter { it == numberWithThreeDices }.take(requiredSimilarDices)
-
-            return scoringDices.sum()
-        }
-
-        private fun fourOfAKind(dices: List<Int>): Int {
-            val requiredSimilarDices = 4
-            val unique = dices.distinct()
-
-            val numberWithThreeDices = unique.firstOrNull { u ->
-                dices.count { it == u } >= requiredSimilarDices
-            } ?: 0
-
-            val scoringDices =
-                dices.filter { it == numberWithThreeDices }.take(requiredSimilarDices)
+            val scoringDices = dices.filter { it == numberWithNOfAKind }.take(requiredSimilarDices)
 
             return scoringDices.sum()
         }

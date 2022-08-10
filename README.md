@@ -19,7 +19,7 @@
   - large
 - Kinds
   - ~~Three of a kind~~
-  - Four of a kind
+  - ~~Four of a kind~~
   - Full house
 - Try to break it
   - Negative dices
