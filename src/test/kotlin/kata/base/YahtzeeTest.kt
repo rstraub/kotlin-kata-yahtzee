@@ -167,15 +167,21 @@ class YahtzeeTest : WordSpec({
             }
         }
 
-        "small straight" xshould {
-            "return 30 given a four sequential dices" {
-                val result = score(SMALL_STRAIGHT, 1, 2, 3, 4, 3)
+        "large straight" should {
+            "return 40 given a 1, 2, 3, 4, 5" {
+                val result = score(LARGE_STRAIGHT, 1, 2, 3, 4, 5)
 
-                result shouldBe 30
+                result shouldBe 40
+            }
+
+            "return 40 given a 2, 3, 4, 5, 6" {
+                val result = score(LARGE_STRAIGHT, 2, 3, 4, 5, 6)
+
+                result shouldBe 40
             }
 
             "return 0 given non straight" {
-                val result = score(SMALL_STRAIGHT, 1, 3, 3, 4, 5)
+                val result = score(LARGE_STRAIGHT, 1, 3, 3, 4, 5)
 
                 result shouldBe 0
             }

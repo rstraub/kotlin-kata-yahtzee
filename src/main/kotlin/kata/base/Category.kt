@@ -48,9 +48,13 @@ enum class Category {
             else 25
         }
     },
-    SMALL_STRAIGHT {
+    LARGE_STRAIGHT {
+        private val option1 = listOf(1, 2, 3, 4, 5)
+        private val option2 = listOf(2, 3, 4, 5, 6)
+
         override fun calculateScore(dices: List<Int>): Int {
-            return 0
+            return if (dices == option1 || dices == option2) 40
+            else 0
         }
     };
 
