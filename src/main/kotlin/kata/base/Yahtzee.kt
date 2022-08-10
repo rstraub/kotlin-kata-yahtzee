@@ -7,14 +7,19 @@ class Yahtzee {
     companion object {
         fun score(
             category: Category,
-            dice1: Int,
-            dice2: Int,
-            dice3: Int,
-            dice4: Int,
-            dice5: Int
+            dice1: Dice,
+            dice2: Dice,
+            dice3: Dice,
+            dice4: Dice,
+            dice5: Dice
         ): Int {
-            val dices = listOf(dice1, dice2, dice3, dice4, dice5)
-
+            val dices = listOf(
+                dice1.points,
+                dice2.points,
+                dice3.points,
+                dice4.points,
+                dice5.points
+            )
             return category.calculateScore(dices)
         }
     }
