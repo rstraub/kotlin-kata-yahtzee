@@ -4,7 +4,7 @@ import kata.base.Dice.*
 
 enum class Category {
     CHANCE {
-        override fun calculateScore(dices: List<Dice>) = dices.map(Dice::points).sum()
+        override fun calculateScore(dices: List<Dice>) = dices.sum()
     },
     YAHTZEE {
         override fun calculateScore(dices: List<Dice>) =
@@ -80,6 +80,7 @@ enum class Category {
     internal abstract fun calculateScore(dices: List<Dice>): Int
 
     private companion object {
+        private fun List<Dice>.sum() = map(Dice::points).sum()
         private fun List<Dice>.countDices(number: Dice) = count { it == number }
         private fun List<Dice>.sumAllOfNumber(number: Dice) = countDices(number) * number.points
 
@@ -92,7 +93,7 @@ enum class Category {
 
             val scoringDices = filter { it == numberWithNOfAKind }.take(numberOfSimilarDices)
 
-            return scoringDices.map(Dice::points).sum()
+            return scoringDices.sum()
         }
     }
 }
