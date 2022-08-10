@@ -48,6 +48,16 @@ enum class Category {
             else 25
         }
     },
+    SMALL_STRAIGHT {
+        private val option1 = listOf(1, 2, 3, 4)
+        private val option2 = listOf(2, 3, 4, 5)
+        private val option3 = listOf(3, 4, 5, 6)
+
+        override fun calculateScore(dices: List<Int>): Int {
+            if (dices.subList(0, dices.size - 1) == option1) return 30
+            return 0
+        }
+    },
     LARGE_STRAIGHT {
         private val option1 = listOf(1, 2, 3, 4, 5)
         private val option2 = listOf(2, 3, 4, 5, 6)
