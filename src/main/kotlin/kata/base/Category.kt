@@ -1,45 +1,47 @@
 package kata.base
 
+import kata.base.Dice.*
+
 enum class Category {
     CHANCE {
-        override fun calculateScore(dices: List<Int>) = dices.sum()
+        override fun calculateScore(dices: List<Dice>) = dices.map(Dice::points).sum()
     },
     YAHTZEE {
-        override fun calculateScore(dices: List<Int>) =
+        override fun calculateScore(dices: List<Dice>) =
             if (dices.toSet().size == 1) 50
             else 0
     },
     ACES {
-        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(1)
+        override fun calculateScore(dices: List<Dice>) = dices.sumAllOfNumber(ONE)
     },
     TWOS {
-        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(2)
+        override fun calculateScore(dices: List<Dice>) = dices.sumAllOfNumber(TWO)
     },
     THREES {
-        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(3)
+        override fun calculateScore(dices: List<Dice>) = dices.sumAllOfNumber(THREE)
     },
     FOURS {
-        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(4)
+        override fun calculateScore(dices: List<Dice>) = dices.sumAllOfNumber(FOUR)
     },
     FIVES {
-        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(5)
+        override fun calculateScore(dices: List<Dice>) = dices.sumAllOfNumber(FIVE)
     },
     SIXES {
-        override fun calculateScore(dices: List<Int>) = dices.sumAllOfNumber(6)
+        override fun calculateScore(dices: List<Dice>) = dices.sumAllOfNumber(SIX)
     },
     THREE_OF_A_KIND {
-        override fun calculateScore(dices: List<Int>) = dices.nOfAKind(3)
+        override fun calculateScore(dices: List<Dice>) = dices.nOfAKind(3)
     },
     FOUR_OF_A_KIND {
-        override fun calculateScore(dices: List<Int>) = dices.nOfAKind(4)
+        override fun calculateScore(dices: List<Dice>) = dices.nOfAKind(4)
     },
     FULL_HOUSE {
-        override fun calculateScore(dices: List<Int>): Int {
+        override fun calculateScore(dices: List<Dice>): Int {
             return if (dices.isFullHouse()) 25
             else 0
         }
 
-        private fun List<Int>.isFullHouse(): Boolean {
+        private fun List<Dice>.isFullHouse(): Boolean {
             val unique = distinct()
             if (unique.size != 2) return false
 
@@ -50,11 +52,11 @@ enum class Category {
         }
     },
     SMALL_STRAIGHT {
-        private val option1 = listOf(1, 2, 3, 4)
-        private val option2 = listOf(2, 3, 4, 5)
-        private val option3 = listOf(3, 4, 5, 6)
+        private val option1 = listOf(ONE, TWO, THREE, FOUR)
+        private val option2 = listOf(TWO, THREE, FOUR, FIVE)
+        private val option3 = listOf(THREE, FOUR, FIVE, SIX)
 
-        override fun calculateScore(dices: List<Int>): Int {
+        override fun calculateScore(dices: List<Dice>): Int {
             val firstFour = dices.subList(0, dices.size - 1)
             val lastFour = dices.subList(1, dices.size)
 
@@ -62,26 +64,26 @@ enum class Category {
             else 0
         }
 
-        private fun List<Int>.isSmallStraight() =
+        private fun List<Dice>.isSmallStraight() =
             this == option1 || this == option2 || this == option3
     },
     LARGE_STRAIGHT {
-        private val option1 = listOf(1, 2, 3, 4, 5)
-        private val option2 = listOf(2, 3, 4, 5, 6)
+        private val option1 = listOf(ONE, TWO, THREE, FOUR, FIVE)
+        private val option2 = listOf(TWO, THREE, FOUR, FIVE, SIX)
 
-        override fun calculateScore(dices: List<Int>): Int {
+        override fun calculateScore(dices: List<Dice>): Int {
             return if (dices == option1 || dices == option2) 40
             else 0
         }
     };
 
-    internal abstract fun calculateScore(dices: List<Int>): Int
+    internal abstract fun calculateScore(dices: List<Dice>): Int
 
     private companion object {
-        private fun List<Int>.countDices(number: Int) = count { it == number }
-        private fun List<Int>.sumAllOfNumber(number: Int) = countDices(number) * number
+        private fun List<Dice>.countDices(number: Dice) = count { it == number }
+        private fun List<Dice>.sumAllOfNumber(number: Dice) = countDices(number) * number.points
 
-        fun List<Int>.nOfAKind(numberOfSimilarDices: Int): Int {
+        fun List<Dice>.nOfAKind(numberOfSimilarDices: Int): Int {
             val unique = distinct()
 
             val numberWithNOfAKind = unique.firstOrNull { u ->
@@ -90,7 +92,7 @@ enum class Category {
 
             val scoringDices = filter { it == numberWithNOfAKind }.take(numberOfSimilarDices)
 
-            return scoringDices.sum()
+            return scoringDices.map(Dice::points).sum()
         }
     }
 }

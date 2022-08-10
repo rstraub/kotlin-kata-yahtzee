@@ -14,11 +14,11 @@ class Yahtzee {
             dice5: Dice
         ): Int {
             val dices = listOf(
-                dice1.points,
-                dice2.points,
-                dice3.points,
-                dice4.points,
-                dice5.points
+                dice1,
+                dice2,
+                dice3,
+                dice4,
+                dice5
             )
             return category.calculateScore(dices)
         }
