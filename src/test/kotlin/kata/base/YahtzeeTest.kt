@@ -109,7 +109,7 @@ class YahtzeeTest : WordSpec({
 
         "three of a kind" should {
             "return 0 given no three similar dices" {
-                val result = score(THREE_OF_A_KIND, 1, 2, 3, 4, 5)
+                val result = score(THREE_OF_A_KIND, 2, 2, 3, 4, 5)
 
                 result shouldBe 0
             }
@@ -124,6 +124,26 @@ class YahtzeeTest : WordSpec({
                 val result = score(THREE_OF_A_KIND, 2, 2, 3, 2, 2)
 
                 result shouldBe 2 + 2 + 2
+            }
+        }
+
+        "four of a kind" should {
+            "return 0 given no four similar dices" {
+                val result = score(FOUR_OF_A_KIND, 2, 2, 2, 3, 5)
+
+                result shouldBe 0
+            }
+
+            "return the sum of four similar dices" {
+                val result = score(FOUR_OF_A_KIND, 2, 2, 2, 2, 5)
+
+                result shouldBe 2 + 2 + 2 + 2
+            }
+
+            "return the sum of just four similar dices given more" {
+                val result = score(FOUR_OF_A_KIND, 2, 2, 2, 2, 2)
+
+                result shouldBe 2 + 2 + 2 + 2
             }
         }
     }
