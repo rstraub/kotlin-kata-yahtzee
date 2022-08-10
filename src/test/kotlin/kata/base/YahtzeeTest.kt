@@ -166,5 +166,21 @@ class YahtzeeTest : WordSpec({
                 result shouldBe 0
             }
         }
+
+        "small straight" xshould {
+            "return 30 given a four sequential dices" {
+                val result = score(SMALL_STRAIGHT, 1, 2, 3, 4, 3)
+
+                result shouldBe 30
+            }
+
+            "return 0 given non straight" {
+                val result = score(SMALL_STRAIGHT, 1, 3, 3, 4, 5)
+
+                result shouldBe 0
+            }
+
+            "return 0 given four non-sequential dices in straight" {}
+        }
     }
 })
