@@ -84,7 +84,7 @@ enum class Category {
         private fun List<Dice>.countDices(number: Dice) = count { it == number }
         private fun List<Dice>.sumAllOfNumber(number: Dice) = countDices(number) * number.points
 
-        fun List<Dice>.nOfAKind(numberOfSimilarDices: Int): Int {
+        private fun List<Dice>.nOfAKind(numberOfSimilarDices: Int): Int {
             val unique = distinct()
 
             val numberWithNOfAKind = unique.firstOrNull { u ->
