@@ -28,6 +28,7 @@ class Yahtzee {
                 SIXES -> ::sixes
                 THREE_OF_A_KIND -> ::threeOfAKind
                 FOUR_OF_A_KIND -> ::fourOfAKind
+                FULL_HOUSE -> ::fullHouse
             }
 
             return result(dices)
@@ -49,6 +50,20 @@ class Yahtzee {
 
         private fun threeOfAKind(dices: List<Int>) = nOfAKind(3, dices)
         private fun fourOfAKind(dices: List<Int>) = nOfAKind(4, dices)
+
+        private fun fullHouse(dices: List<Int>): Int {
+            val unique = dices.distinct()
+            if (unique.size != 2) return 0
+
+            val firstDice = unique.first()
+            val countOfFirstDices = dices.count { it == firstDice }
+
+            val secondDice = unique[1]
+            val countOfSecondDices = dices.count { it == secondDice }
+
+            return if (countOfFirstDices > 3 || countOfSecondDices > 3) 0
+            else 25
+        }
 
         private fun nOfAKind(requiredSimilarDices: Int, dices: List<Int>): Int {
             val unique = dices.distinct()

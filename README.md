@@ -20,7 +20,7 @@
 - Kinds
   - ~~Three of a kind~~
   - ~~Four of a kind~~
-  - Full house
+  - ~~Full house~~
 - Try to break it
   - Negative dices
   - Dices larger than six

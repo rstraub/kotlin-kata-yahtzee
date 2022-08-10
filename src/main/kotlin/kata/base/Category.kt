@@ -10,5 +10,6 @@ enum class Category {
     FIVES,
     SIXES,
     THREE_OF_A_KIND,
-    FOUR_OF_A_KIND
+    FOUR_OF_A_KIND,
+    FULL_HOUSE
 }

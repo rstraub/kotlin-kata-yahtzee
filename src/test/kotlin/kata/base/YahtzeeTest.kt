@@ -146,5 +146,25 @@ class YahtzeeTest : WordSpec({
                 result shouldBe 2 + 2 + 2 + 2
             }
         }
+
+        "full house" should {
+            "return 0 given no two and three similar dices" {
+                val result = score(FULL_HOUSE, 2, 2, 1, 3, 3)
+
+                result shouldBe 0
+            }
+
+            "return 25 given two and three similar dices" {
+                val result = score(FULL_HOUSE, 2, 2, 2, 3, 3)
+
+                result shouldBe 25
+            }
+
+            "return 0 given four similar dices and one different one" {
+                val result = score(FULL_HOUSE, 2, 2, 2, 2, 3)
+
+                result shouldBe 0
+            }
+        }
     }
 })
